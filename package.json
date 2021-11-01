@@ -1,0 +1,29 @@
+{
+  "name": "team-roster-gen",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Smilinirish/team-roster-gen.git"
+  },
+  "author": "Xander V",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Smilinirish/team-roster-gen/issues"
+  },
+  "homepage": "https://github.com/Smilinirish/team-roster-gen#readme",
+  "dependencies": {
+    "inquirer": "^8.2.0"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}
