@@ -4,20 +4,23 @@ const intern = require('./lib/Intern');
 const manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const team = []
+const htmlclose =[`</body>
+</html>`]
 const htmlstring = [`<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>${team[0]}</title>
-    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>My Team</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/56cab0a4d8.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="banner-bar">
-        <h1>${team[0]}</h1>
-    </div>
-    <div class="card-container">
+<header class='py-3 mb-4 border-bottom text-center text-white bg-danger'>
+<h1>My Team</h1>
+</header>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
     `]
 const createManager = () => {
     inquirer.prompt([
@@ -139,32 +142,60 @@ const addTeamMember = () => {
 }
 const cardGen = ()=>{
     team.forEach(teamMember => {
-        let card =`<div class="member-card">
-        <div class="card-top">
-            <h2>${team.name}</h2>
-            <h2>${team.title}</h2>
-        </div>
-        <div class="card-bottom">
-            <p>Employee ID: ${team.id}</p>
-            <p>Email: <a href="Email:${team.email}">${team.email}</a>></p>`
-            if(team.office){
-                card +=`
-                <p>${team.managerNumber}</p>
+        let card =`<div class="col">
+        <div class="card rounded shadow-sm m-2">
+        <div class="card-header text-white bg-primary">`
+            
+            if(teamMember.officeNumber){
+                card +=`<h2>${teamMember.name}</h2>
+                <h2><i class="fas fa-mug-hot"></i> ${teamMember.role}</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                <li class="list-group-item">Employee ID: ${teamMember.employeeId}</li>
+                <li class="list-group-item">Email: <a href="Email:${teamMember.email}">${teamMember.email}</a></li>
+                <li class="list-group-item">Office Number:${teamMember.officeNumber}</li>
+                </ul>
+                </div>
+                </div>
+                </div>
                 `
             }
-            if(team.gitHub){
-                card +=`
-                <p>${team.gitHub}</p>
+            if(teamMember.gitHub){ 
+                card +=`<h2>${teamMember.name}</h2>
+                <h2><i class="fas fa-glasses"></i> ${teamMember.role}</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                <li class="list-group-item">Employee ID: ${teamMember.employeeId}</li>
+                <li class="list-group-item">Email: <a href="Email:${teamMember.email}">${teamMember.email}</a></li>
+                <li class="list-group-item">GitHub:<a href="https://github.com/${teamMember.gitHub}">${teamMember.gitHub}</a></li>
+                </ul>
+                </div>
+                </div>
+                </div>
                 `
             }
-            if(team.school){
-                card +=`
-                <p>${team.school}</p>
+            if(teamMember.school){
+                card +=`<h2>${teamMember.name}</h2>
+                <h2><i class="fas fa-user-graduate"></i> ${teamMember.role}</h2>
+            </div>
+            <div class="card-body">
+                <ul class="list-group">
+                <li class="list-group-item">Employee ID: ${teamMember.employeeId}</li>
+                <li class="list-group-item">Email: <a href="Email:${teamMember.email}">${teamMember.email}</a></li>
+                <li class="list-group-item">School:${teamMember.school}</li>
+                </ul>
+                </div>
+                </div>
+                </div>
                 `
+        
             }
-            htmlstring.push(card)
+            htmlstring.push(card);
 
     });
+    htmlstring.push(htmlclose);
     htmlGen();
 }
 
